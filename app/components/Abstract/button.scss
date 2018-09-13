@@ -1,0 +1,28 @@
+@import "../../assets/scss/colors.scss";
+@import "./focusable.scss";
+
+.input-group {
+    button {
+        background-color: $darker;
+        border: 0;
+        border-bottom: 2px solid $dark;
+        color: $lightest;
+        padding: 8px 36px 8px 16px;
+        outline: none;
+        &:hover {
+            background-color: $darkest;
+        }
+        > svg {
+            position: absolute;
+            right: 10px;
+        }
+    }
+
+    &.disabled {
+        button {
+            &:hover {
+                background-color: $darker;
+            }
+        }
+    }
+}

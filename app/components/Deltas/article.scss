@@ -1,0 +1,50 @@
+@import "../../assets/scss/colors.scss";
+.quill {
+    padding: 10px 0;
+    .ql-editor {
+        min-height: 200px;
+        img {
+            margin: 0 4px;
+            vertical-align: top;
+        }
+    }
+}
+#article {
+    padding: 10px;
+    > .input-group {
+        max-width: 400px;
+    }
+
+    .article-actions {
+        float: right;
+    }
+}
+.article-row {
+    background-color: $lightest;
+    padding: 10px;
+    border-left: 6px solid $base;
+    cursor: pointer;
+
+    &.inactive {
+        border-color: $dark;
+    }
+
+    &:nth-child(odd) {
+        background-color: white
+    }
+
+    .details {
+        float: right;
+        font-size: 0.8em;
+        color: $dark;
+        > span {
+            position: relative;
+            top: -2px;
+        }
+        > svg {
+            color: green;
+            font-size: 1.2em;
+            margin-left: 7px;
+        }
+    }
+}

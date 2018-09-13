@@ -1,0 +1,9 @@
+@import "../../assets/scss/colors.scss";
+@import "./focusable.scss";
+
+.input-group {
+    > svg {
+        right: 4px;
+        bottom: 8px;
+    }
+}

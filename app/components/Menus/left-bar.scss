@@ -1,0 +1,30 @@
+@import "../../assets/scss/colors.scss";
+
+#left-bar-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 52px;
+    height: 100%;
+    background-color: $darkest;
+    li {
+        border-right: 6px solid $darkest;
+
+        a {
+            display: block;
+            text-align: center;
+            font-size: 1.5em;
+            padding: 8px 0 6px 4px;
+            color: $lightest;
+        }
+        &:hover {
+            background-color: $darker;
+            border-color: $darker;
+        }
+
+        &.active {
+            background-color: $darker;
+            border-color: $base;
+        }
+    }
+}

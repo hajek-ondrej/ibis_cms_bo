@@ -1,0 +1,41 @@
+.input-group {
+    padding-top: 12px;
+    display: flex;
+    flex-flow: column nowrap;
+    position: relative;
+    > label, > .label {
+        font-size: 0.8em;
+        padding: 0;
+    }
+    > svg, > .icons {
+        position: absolute;
+    }
+
+    > input, > .input {
+        background: transparent;
+        border: none;
+        padding: 6px 24px 6px 0;
+        border-bottom: 2px solid $dark;
+        outline: none;
+        line-height: 1.1em;
+    }
+
+    > .input-border {
+        transition: width 0.3s ease-in-out;
+        background-color: $base;
+        height: 2px;
+        margin-top: -2px;
+        width: 0;
+        align-self: center;
+        &.focused {
+            width: 100%;
+        }
+    }
+
+    &.disabled {
+        > .input-border {
+            background-color: $dark;
+        }
+    }
+    
+}
