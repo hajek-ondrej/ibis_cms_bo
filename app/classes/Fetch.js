@@ -25,7 +25,7 @@ class Fetch {
                                     token: tokens.a,
                                     refresh: tokens.r
                                 }).then(
-                                    () => { console.log(tokens.a); this.request(url, options).then(resolve, reject) }
+                                    () => { this.request(url, options).then(resolve, reject) }
                                 , reject);
                             } 
                             else

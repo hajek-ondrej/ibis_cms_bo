@@ -2,7 +2,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractCSSPlugin = require('extract-css-chunks-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -36,29 +36,27 @@ const config = {
                     path.resolve(__dirname, 'node_modules/css-reset-and-normalize-sass/scss/flavored-reset-and-normalize.scss'),
                     path.resolve(__dirname, 'app'),
                 ],
-                loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        {
-                            loader:  'css-loader',
-                            options: {
-                                sourceMap: !isDev
-                            }
-                        },
-                        {
-                            loader:  'sass-loader',
-                            options: {
-                                sourceMap: !isDev
-                            }
+               
+                use: [
+                    ExtractCSSPlugin.loader,
+                    {
+                        loader:  'css-loader',
+                        options: {
+                            sourceMap: !isDev
                         }
-                    ]
-                })
+                    },
+                    {
+                        loader:  'sass-loader',
+                        options: {
+                            sourceMap: !isDev
+                        }
+                    }
+                ]
+            
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
+                use: [  ExtractCSSPlugin.loader,
                         {
                             loader:  'css-loader',
                             options: {
@@ -66,7 +64,6 @@ const config = {
                             }
                         }
                     ]
-                })
             },
             {
                 test: /\.(json|png|jpg|jpeg|gif|svg|ttf|eot|woff|woff2|otf)$/,
@@ -80,7 +77,10 @@ const config = {
     },
     plugins: [
         new CleanWebpackPlugin(['./dist/*.js', './dist/*.css', './dist/index.html'], { watch: true }),
-        new ExtractTextPlugin('ibis.[name].[hash].css'),
+        new ExtractCSSPlugin({
+            filename: "ibis.[name].css",
+            chunkFilename: 'ibis.[name].[hash].css'
+        }),
         new HtmlWebpackPlugin({
             template: './assets/files/templates/index.ejs'
         }),
