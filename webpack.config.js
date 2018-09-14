@@ -78,8 +78,8 @@ const config = {
     plugins: [
         new CleanWebpackPlugin(['./dist/*.js', './dist/*.css', './dist/index.html'], { watch: true }),
         new ExtractCSSPlugin({
-            filename: "ibis.[name].css",
-            chunkFilename: 'ibis.[name].[hash].css'
+            filename: "ibis.[name].[hash].css"
+            
         }),
         new HtmlWebpackPlugin({
             template: './assets/files/templates/index.ejs'
