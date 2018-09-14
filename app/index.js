@@ -19,20 +19,6 @@ import App from "./components/App.jsx"
 import creators from "./creators/creators.js"
 import reducers from "./reducers/reducers.js"
 
-import ImageResize from "quill-image-resize-module";
-import 'react-quill/dist/quill.snow.css';
-import { Quill } from "react-quill";
-
-Quill.register('modules/ImageResize', ImageResize);
-const Parchment = Quill.import('parchment');
-Quill.register(new Parchment.Attributor.Style('display', 'display', { 
-    whitelist: ['inline']
-}));
-Quill.register(new Parchment.Attributor.Style('float', 'float', { 
-    whitelist: ['left', 'right', 'center']
-}));
-Quill.register(new Parchment.Attributor.Style('margin', 'margin', {}));
-  
 const history = createBrowserHistory({ basename: '/ibis/cms/bo/dist'});
 const store = createStore(
     connectRouter(history)(reducers), 

@@ -1,10 +1,26 @@
 import React from "react";
-import ReactQuill from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
+import ImageResize from "quill-image-resize-module";
+import ImageFormat from "../Abstract/ImageFormat.jsx";
+import 'react-quill/dist/quill.snow.css';
 
 class Editor extends React.Component {
     constructor(props) {
         super(props);
         
+        Quill.register('modules/ImageResize', ImageResize);
+        const Parchment = Quill.import('parchment');
+
+        Quill.register(new Parchment.Attributor.Style('display', 'display', { 
+            whitelist: ['inline']
+        }));
+
+        Quill.register(new Parchment.Attributor.Style('float', 'float', { 
+            whitelist: ['left', 'right', 'center']
+        }));
+        Quill.register(new Parchment.Attributor.Style('margin', 'margin', {}));
+  
+        Quill.register(ImageFormat, true);
 
         this.modules = {
             toolbar: [
@@ -12,7 +28,7 @@ class Editor extends React.Component {
               ['bold', 'italic', 'underline','strike', 'blockquote'],
               [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
               ['link', 'image'],
-              [{ 'align': [] }],
+              [{ 'align': [ ] }],
 
               ['clean']
             ],
@@ -31,6 +47,7 @@ class Editor extends React.Component {
     }
 
     onChange(content, delta, source, editor) {
+        console.log(editor.getContents())
         if (typeof this.props.onChange === 'function' && source === 'user')
             this.props.onChange(null, editor.getContents());
     }
